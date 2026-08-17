@@ -1,0 +1,42 @@
+.about-copy {
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.about h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.about h3 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.aa-box {
+  padding: 32px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--highlight);
+  margin-bottom: 48px;
+}
+
+.aa-box h2 {
+  margin-top: 8px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin: 16px 0 32px;
+}
+
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

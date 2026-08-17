@@ -1,0 +1,77 @@
+.course-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+  align-items: start;
+}
+
+.course-copy h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 28px 0 8px;
+}
+
+.course-copy h2:first-child {
+  margin-top: 0;
+}
+
+.pay-list,
+.related {
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.related a:hover {
+  color: var(--gold);
+}
+
+.price-box {
+  position: sticky;
+  top: 110px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.price-box .old {
+  margin: 0;
+  color: var(--muted);
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+.price-box .price {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 4px 0 8px;
+}
+
+.monthly {
+  font-size: 14px !important;
+}
+
+.price-box .btn {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.back {
+  display: block;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
+  .course-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .price-box {
+    position: static;
+  }
+}

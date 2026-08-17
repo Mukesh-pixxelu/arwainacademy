@@ -1,0 +1,31 @@
+.footer {
+  margin-top: 0;
+  background: var(--ink);
+  color: #cfd3e6;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+.footer-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer p {
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.footer nav {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}

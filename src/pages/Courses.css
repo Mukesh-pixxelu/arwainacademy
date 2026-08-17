@@ -1,0 +1,90 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.filter {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.filter.active {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.price {
+  font-size: 20px;
+  color: var(--ink) !important;
+  font-weight: 700;
+}
+
+.price s {
+  color: var(--muted);
+  font-weight: 400;
+  margin-right: 6px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.course-card {
+  background: var(--white);
+  padding: 28px;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 44px rgba(14, 20, 66, 0.12);
+}
+
+.course-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 8px 0 10px;
+}
+
+.course-card p {
+  font-size: 15px;
+  flex: 1;
+}
+
+.course-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+@media (max-width: 700px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}
