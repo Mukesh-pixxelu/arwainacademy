@@ -9,7 +9,14 @@
   --line: #e6e8f2;
   --radius: 14px;
   --shadow: 0 12px 40px rgba(14, 20, 66, 0.08);
-  --wrap: 1080px;
+  --page-pad: clamp(16px, 4vw, 40px);
+  --wrap: 1320px;
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --wrap: 1440px;
+  }
 }
 
 * {
@@ -30,9 +37,11 @@ a {
 
 .wrap,
 .page {
+  width: 100%;
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 0 24px;
+  padding-left: var(--page-pad);
+  padding-right: var(--page-pad);
 }
 
 .page {
@@ -130,4 +139,16 @@ button.btn {
 
 .page-hero .eyebrow {
   color: var(--highlight);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

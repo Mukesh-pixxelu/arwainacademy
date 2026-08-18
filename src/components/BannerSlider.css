@@ -1,0 +1,201 @@
+.banner {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(560px, 80vh, 840px);
+  overflow: hidden;
+  background: var(--ink);
+  color: #fff;
+}
+
+.banner-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.85s ease, transform 6.5s ease;
+  z-index: 0;
+}
+
+.banner-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.banner-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(8, 12, 40, 0.82) 0%, rgba(8, 12, 40, 0.55) 42%, rgba(8, 12, 40, 0.22) 100%);
+}
+
+.banner-inner {
+  position: relative;
+  z-index: 2;
+  min-height: clamp(560px, 80vh, 840px);
+  display: flex;
+  align-items: center;
+  padding-top: 64px;
+  padding-bottom: 80px;
+}
+
+.banner-copy {
+  max-width: 640px;
+  animation: bannerIn 0.7s ease;
+}
+
+.banner-copy h1 {
+  font-size: clamp(32px, 4.2vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  max-width: 16ch;
+  margin: 0 0 16px;
+}
+
+.banner-copy .lead {
+  font-size: 22px;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.banner-copy p {
+  max-width: 52ch;
+  color: #c5cae0;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.banner-copy .eyebrow {
+  color: var(--highlight);
+}
+
+.banner .btn-highlight {
+  background: var(--highlight);
+  color: var(--ink);
+  margin-top: 28px;
+}
+
+.banner .btn-highlight:hover {
+  background: #edd36a;
+  color: var(--ink);
+}
+
+.banner-controls {
+  position: absolute;
+  z-index: 3;
+  right: max(var(--page-pad), calc((100% - min(var(--wrap), 100%)) / 2 + var(--page-pad)));
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.banner-arrow {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(14, 20, 66, 0.45);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.banner-arrow:hover {
+  background: var(--highlight);
+  color: var(--ink);
+  border-color: var(--highlight);
+}
+
+.banner-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.banner-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+}
+
+.banner-dots button.is-active {
+  width: 28px;
+  background: var(--highlight);
+}
+
+.banner-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.banner-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--highlight);
+  animation: bannerBar 6.5s linear forwards;
+}
+
+.banner-progress span.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes bannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bannerBar {
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .banner-inner {
+    padding-bottom: 88px;
+  }
+
+  .banner-controls {
+    right: auto;
+    left: var(--page-pad);
+    bottom: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-slide,
+  .banner-copy,
+  .banner-progress span {
+    animation: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .banner-slide.is-active {
+    transform: none;
+  }
+}
