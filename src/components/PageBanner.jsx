@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { asset } from '../utils/asset.js'
 import './PageBanner.css'
 
 export default function PageBanner({ title, text, image, crumbs }) {
@@ -6,7 +7,7 @@ export default function PageBanner({ title, text, image, crumbs }) {
     <section className="page-banner">
       <div
         className="page-banner-bg"
-        style={{ backgroundImage: `url("${image}")` }}
+        style={{ backgroundImage: `url("${asset(image)}")` }}
         aria-hidden="true"
       />
       <div className="wrap page-banner-inner">

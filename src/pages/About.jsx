@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageBanner from '../components/PageBanner.jsx'
+import { asset } from '../utils/asset.js'
 import './About.css'
 
 export default function About() {
@@ -19,7 +20,7 @@ export default function About() {
         <section className="about-approach">
           <div className="about-media">
             <img
-              src="/images/about.jpg"
+              src={asset('images/about.jpg')}
               alt="A mentor connecting with professionals in a leadership session"
             />
             <aside>
@@ -77,7 +78,7 @@ export default function About() {
 
           <article className="help-row">
             <img
-              src="/images/qualifications.jpg"
+              src={asset('images/qualifications.jpg')}
               alt="Professionals in a leadership classroom"
             />
             <div>
@@ -92,7 +93,7 @@ export default function About() {
 
           <article className="help-row is-reverse">
             <img
-              src="/images/coaching.jpg"
+              src={asset('images/coaching.jpg')}
               alt="One-to-one coaching conversation"
             />
             <div>
@@ -107,7 +108,7 @@ export default function About() {
 
           <article className="help-row">
             <img
-              src="/images/leadership.jpg"
+              src={asset('images/leadership.jpg')}
               alt="Leaders collaborating in a training room"
             />
             <div>

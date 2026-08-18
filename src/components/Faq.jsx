@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { asset } from '../utils/asset.js'
 import './Faq.css'
 
 const faqs = [
@@ -60,7 +61,7 @@ export default function Faq({ showIntro = true }) {
               Frequently asked questions
             </h2>
             <img
-              src="/images/about.jpg"
+              src={asset('images/about.jpg')}
               alt="Leadership mentoring session at Arwain Academy"
             />
             <div className="faq-help">

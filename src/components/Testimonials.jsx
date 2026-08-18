@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { testimonials as quotes } from '../data/testimonials.js'
+import { asset } from '../utils/asset.js'
 import './Testimonials.css'
 
 export default function Testimonials() {
@@ -56,7 +57,11 @@ export default function Testimonials() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="testimonials-bg" aria-hidden="true" />
+      <div
+        className="testimonials-bg"
+        style={{ '--testimonials-photo': `url("${asset('images/bg.jpg')}")` }}
+        aria-hidden="true"
+      />
       <div className="wrap testimonials-inner">
         <div className="testimonials-head">
           <p className="eyebrow">Testimonials</p>

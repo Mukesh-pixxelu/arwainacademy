@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import BannerSlider from '../components/BannerSlider.jsx'
 import Testimonials from '../components/Testimonials.jsx'
 import Faq from '../components/Faq.jsx'
+import { asset } from '../utils/asset.js'
 import './Home.css'
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="wrap home-about-inner">
           <div className="home-about-media">
             <img
-              src="/images/about.jpg"
+              src={asset('images/about.jpg')}
               alt="A mentor connecting with professionals in a leadership session"
             />
           </div>

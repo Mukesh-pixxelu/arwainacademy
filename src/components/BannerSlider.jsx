@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { asset } from '../utils/asset.js'
 import './BannerSlider.css'
 
 const slides = [
@@ -69,7 +70,7 @@ export default function BannerSlider() {
           aria-hidden={i !== index}
         >
           <img
-            src={item.image}
+            src={asset(item.image)}
             alt=""
             loading={i === 0 ? 'eager' : 'lazy'}
           />
