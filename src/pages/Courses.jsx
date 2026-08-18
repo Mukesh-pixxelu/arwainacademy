@@ -4,37 +4,6 @@ import { courses, formatPrice } from '../data/courses.js'
 import PageBanner from '../components/PageBanner.jsx'
 import './Courses.css'
 
-<<<<<<< HEAD
-export default function Courses() {
-  return (
-    <main>
-      <PageBanner
-        title="Courses"
-        text="Choose your starting point. Recognised qualifications and 1-to-1 coaching."
-        image="/banner/qualifications.jpg"
-        crumbs={[
-          { label: 'Home', to: '/' },
-          { label: 'Courses' },
-        ]}
-      />
-
-      <div className="page">
-        <div className="course-grid">
-          {courses.map((course) => (
-            <article key={course.slug} className="course-card">
-              <span className="tag">{course.category}</span>
-              <h2>{course.title}</h2>
-              <p>{course.excerpt}</p>
-              <p className="price">
-                {course.oldPrice ? (
-                  <s>£{course.oldPrice}</s>
-                ) : null}{' '}
-                {formatPrice(course.price)}
-              </p>
-              <Link to={'/courses/' + course.slug} className="btn">
-                View course
-              </Link>
-=======
 const filters = ['All', 'Level 3', 'Level 5', 'Coaching']
 
 export default function Courses() {
@@ -47,13 +16,15 @@ export default function Courses() {
 
   return (
     <main>
-      <section className="page-hero">
-        <div className="wrap">
-          <p className="eyebrow">Training</p>
-          <h1>Courses</h1>
-          <p>Choose your starting point — qualifications and 1-to-1 coaching.</p>
-        </div>
-      </section>
+      <PageBanner
+        title="Courses"
+        text="Choose your starting point. Recognised qualifications and 1-to-1 coaching."
+        image="/banner/qualifications.jpg"
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Courses' },
+        ]}
+      />
 
       <div className="page">
         <div className="filters">
@@ -89,7 +60,6 @@ export default function Courses() {
                   View course
                 </Link>
               </div>
->>>>>>> e3989e9e8fb1dd40e0a59175ffcece18a3e8cd68
             </article>
           ))}
         </div>

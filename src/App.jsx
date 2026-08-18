@@ -26,15 +26,11 @@ export default function App() {
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<Contact />} />
-<<<<<<< HEAD
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<Terms />} />
-      </Routes>
-=======
-        <Route path="/cart" element={<Cart />} /> 
+        <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
-      </Routes>    
->>>>>>> e3989e9e8fb1dd40e0a59175ffcece18a3e8cd68
+      </Routes> 
 
       <Footer />
     </>
