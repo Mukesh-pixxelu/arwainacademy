@@ -11,7 +11,7 @@ const slides = [
     text: 'At Arwain Academy we develop the next generation of leaders — with courses and coaching that make your goals real.',
     cta: 'Explore courses',
     to: '/courses',
-    image: '/banner/leadership.jpg',
+    image: '/images/leadership.jpg',
     alt: 'Leadership workshop with a trainer guiding a professional team',
   },
   {
@@ -22,7 +22,7 @@ const slides = [
     text: 'From first-line managers to middle managers — build recognised skills with tutor support and a badge you can take through your career.',
     cta: 'Browse courses',
     to: '/courses',
-    image: '/banner/qualifications.jpg',
+    image: '/images/qualifications.jpg',
     alt: 'Professionals studying a leadership and management qualification',
   },
   {
@@ -33,7 +33,7 @@ const slides = [
     text: 'A human approach to leadership — connect with your team, stand out in your career, and follow through with accountability.',
     cta: 'Book a free call',
     to: '/contact',
-    image: '/banner/coaching.jpg',
+    image: '/images/coaching.jpg',
     alt: 'One-to-one coaching conversation between professionals',
   },
 ]

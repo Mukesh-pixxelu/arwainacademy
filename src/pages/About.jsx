@@ -8,7 +8,7 @@ export default function About() {
       <PageBanner
         title="We’re passionate about helping you grow and make an impact."
         text="The Human Approach to leadership — connect with your team and lead with confidence."
-        image="/about/about.jpg"
+        image="/images/about.jpg"
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'About' },
@@ -19,7 +19,7 @@ export default function About() {
         <section className="about-approach">
           <div className="about-media">
             <img
-              src="/about/about.jpg"
+              src="/images/about.jpg"
               alt="A mentor connecting with professionals in a leadership session"
             />
             <aside>
@@ -77,7 +77,7 @@ export default function About() {
 
           <article className="help-row">
             <img
-              src="/banner/qualifications.jpg"
+              src="/images/qualifications.jpg"
               alt="Professionals in a leadership classroom"
             />
             <div>
@@ -92,7 +92,7 @@ export default function About() {
 
           <article className="help-row is-reverse">
             <img
-              src="/banner/coaching.jpg"
+              src="/images/coaching.jpg"
               alt="One-to-one coaching conversation"
             />
             <div>
@@ -107,7 +107,7 @@ export default function About() {
 
           <article className="help-row">
             <img
-              src="/banner/leadership.jpg"
+              src="/images/leadership.jpg"
               alt="Leaders collaborating in a training room"
             />
             <div>

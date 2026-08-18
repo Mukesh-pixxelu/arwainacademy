@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
       <PageBanner
         title="Privacy policy"
         text="How Arwain Academy collects, uses and looks after your information."
-        image="/banner/coaching.jpg"
+        image="/images/coaching.jpg"
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'Privacy policy' },

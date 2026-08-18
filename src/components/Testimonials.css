@@ -12,7 +12,7 @@
   z-index: 0;
   background:
     linear-gradient(180deg, rgba(8, 12, 40, 0.62) 0%, rgba(8, 12, 40, 0.7) 100%),
-    url('/testimonials/bg.jpg') center / cover no-repeat;
+    url('/images/bg.jpg') center / cover no-repeat;
 }
 
 .testimonials-inner {

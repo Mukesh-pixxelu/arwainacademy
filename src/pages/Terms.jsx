@@ -16,7 +16,7 @@ export default function Terms() {
       <PageBanner
         title="Terms & conditions"
         text="The terms that apply when you use this website or enrol on an Arwain Academy course."
-        image="/banner/qualifications.jpg"
+        image="/images/qualifications.jpg"
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'Terms & conditions' },

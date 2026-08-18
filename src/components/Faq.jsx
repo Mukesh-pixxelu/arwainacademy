@@ -60,7 +60,7 @@ export default function Faq({ showIntro = true }) {
               Frequently asked questions
             </h2>
             <img
-              src="/about/about.jpg"
+              src="/images/about.jpg"
               alt="Leadership mentoring session at Arwain Academy"
             />
             <div className="faq-help">

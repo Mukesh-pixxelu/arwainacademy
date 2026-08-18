@@ -9,7 +9,7 @@ export default function TestimonialsPage() {
       <PageBanner
         title="What our clients are saying"
         text="Leaders and managers share how coaching and qualifications helped them grow with confidence."
-        image="/banner/leadership.jpg"
+        image="/images/leadership.jpg"
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'Testimonials' },
