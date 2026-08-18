@@ -13,7 +13,7 @@ export default function Home() {
         <div className="wrap home-about-inner">
           <div className="home-about-media">
             <img
-              src="/about/about.jpg"
+              src="/images/about.jpg"
               alt="A mentor connecting with professionals in a leadership session"
             />
           </div>

@@ -19,7 +19,7 @@ export default function Courses() {
       <PageBanner
         title="Courses"
         text="Choose your starting point. Recognised qualifications and 1-to-1 coaching."
-        image="/banner/qualifications.jpg"
+        image="/images/qualifications.jpg"
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'Courses' },

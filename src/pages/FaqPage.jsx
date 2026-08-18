@@ -8,7 +8,7 @@ export default function FaqPage() {
       <PageBanner
         title="Frequently asked questions"
         text="Clear answers on courses, coaching and how to get started — so you can take the next step with confidence."
-        image="/banner/coaching.jpg"
+        image="/images/coaching.jpg"
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'FAQ' },
