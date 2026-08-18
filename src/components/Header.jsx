@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useCart } from '../cart/CartContext'
 import './Header.css'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const {count} = useCart()
 
   return (
     <header className="header">
@@ -32,7 +34,7 @@ export default function Header() {
               Courses
             </NavLink>
             <NavLink to="/cart" onClick={() => setOpen(false)}>
-              Cart
+              Cart ({count})
             </NavLink>
             <Link
               to="/contact"

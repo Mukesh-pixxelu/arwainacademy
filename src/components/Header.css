@@ -33,7 +33,7 @@
 .header-main {
   background: var(--white);
   border-bottom: 1px solid var(--line);
-  overflow: hidden;
+  
 }
 
 .header-inner {

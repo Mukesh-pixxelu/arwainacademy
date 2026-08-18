@@ -1,10 +1,13 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useCart } from '../cart/CartContext.jsx'
 import { courses, getCourse, formatPrice } from '../data/courses.js'
 import './CourseDetail.css'
 
 export default function CourseDetail() {
   const { slug } = useParams()
   const course = getCourse(slug)
+  const { addItem, items } = useCart()
+  const navigate = useNavigate()
 
   if (!course) {
     return (
@@ -13,6 +16,13 @@ export default function CourseDetail() {
         <Link to="/courses">Back to courses</Link>
       </main>
     )
+  }
+
+  const inCart = items.some((item) => item.slug === course.slug)
+
+  function addToCart() {
+    addItem(course)
+    navigate('/cart')
   }
 
   const monthly3 = course.price > 0 ? Math.ceil(course.price / 3) : 0
@@ -35,6 +45,7 @@ export default function CourseDetail() {
 
       <div className="page course-layout">
         <article className="course-copy">
+          <img className="course-photo" src={course.image} alt="" />
           <h2>Overview</h2>
           <p>{course.overview}</p>
 
@@ -77,12 +88,19 @@ export default function CourseDetail() {
           {monthly12 > 0 ? (
             <p className="monthly">From £{monthly12}/month, interest-free</p>
           ) : null}
-          <Link
-            to={course.cta === 'enquire' ? '/contact' : '/contact'}
-            className="btn"
-          >
-            {course.cta === 'enquire' ? 'Enquire now' : 'Add to cart'}
-          </Link>
+          {course.price === 0 ? (
+            <Link to="/contact" className="btn">
+              Enquire now
+            </Link>
+          ) : inCart ? (
+            <Link to="/cart" className="btn">
+              In cart
+            </Link>
+          ) : (
+            <button type="button" className="btn" onClick={addToCart}>
+              Add to cart
+            </button>
+          )}
           <Link to="/courses" className="back">
             ← All courses
           </Link>
