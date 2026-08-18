@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { courses, formatPrice } from '../data/courses.js'
+import PageBanner from '../components/PageBanner.jsx'
 import './Courses.css'
 
 const filters = ['All', 'Level 3', 'Level 5', 'Coaching']
@@ -15,13 +16,15 @@ export default function Courses() {
 
   return (
     <main>
-      <section className="page-hero">
-        <div className="wrap">
-          <p className="eyebrow">Training</p>
-          <h1>Courses</h1>
-          <p>Choose your starting point — qualifications and 1-to-1 coaching.</p>
-        </div>
-      </section>
+      <PageBanner
+        title="Courses"
+        text="Choose your starting point. Recognised qualifications and 1-to-1 coaching."
+        image="/banner/qualifications.jpg"
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Courses' },
+        ]}
+      />
 
       <div className="page">
         <div className="filters">

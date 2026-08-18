@@ -1,31 +1,124 @@
 .footer {
-  margin-top: 0;
   background: var(--ink);
-  color: #cfd3e6;
+  color: #c5cae0;
+  border-top: 3px solid var(--highlight);
+}
+
+.footer a {
+  color: #d7dced;
 }
 
 .footer a:hover {
-  color: #fff;
+  color: var(--highlight);
 }
 
-.footer-inner {
+.footer-main {
+  width: 100%;
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 28px 24px;
+  padding: 56px var(--page-pad) 40px;
+  display: grid;
+  grid-template-columns: 1.3fr 1.2fr 0.8fr 1fr;
+  gap: 36px;
+}
+
+.footer-logo {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.footer-logo span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: var(--highlight);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.footer-brand p {
+  margin: 0;
+  max-width: 36ch;
+  color: #c5cae0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.footer h2 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer li {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer-courses small {
+  display: block;
+  margin-top: 3px;
+  color: #9aa3c7;
+  font-size: 12px;
+}
+
+.footer-courses a {
+  font-weight: 600;
+  color: #fff;
+}
+
+.footer-bottom {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--page-pad) 28px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer p {
+.footer-bottom p {
   margin: 0;
-  color: #fff;
-  font-weight: 600;
+  color: #9aa3c7;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-.footer nav {
+.footer-bottom nav {
   display: flex;
-  gap: 20px;
-  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 13px;
+}
+
+@media (max-width: 1024px) {
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
