@@ -72,6 +72,11 @@
 
 .header-main {
   background: var(--white);
+<<<<<<< HEAD
+=======
+  border-bottom: 1px solid var(--line);
+  
+>>>>>>> e3989e9e8fb1dd40e0a59175ffcece18a3e8cd68
 }
 
 .header-inner {

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useCart } from '../cart/CartContext'
 import './Header.css'
 
 const socials = [
@@ -70,6 +71,7 @@ function TopbarItems({ copy }) {
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const {count} = useCart()
 
   return (
     <header className="header">
@@ -157,8 +159,12 @@ export default function Header() {
               FAQ
             </NavLink>
             <NavLink to="/cart" onClick={() => setOpen(false)}>
+<<<<<<< HEAD
               <span>06</span>
               Cart
+=======
+              Cart ({count})
+>>>>>>> e3989e9e8fb1dd40e0a59175ffcece18a3e8cd68
             </NavLink>
             <div className="nav-drawer-actions">
               <Link
