@@ -1,69 +1,36 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useAuth } from '../auth/AuthContext'
 import { useCart } from '../cart/CartContext'
+import { socials } from '../data/socials.jsx'
+import LogoMark from './LogoMark.jsx'
 import './Header.css'
 
-const socials = [
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M6.5 9.5H4V20h2.5V9.5zM5.25 4A1.75 1.75 0 1 0 5.26 7.5 1.75 1.75 0 0 0 5.25 4zM20 20h-2.5v-5.6c0-1.9-.7-3.2-2.4-3.2-1.3 0-2 0.9-2.3 1.7-.1.3-.1.7-.1 1.1V20H10.2s.1-8.4 0-10.5H12.7v1.5c.4-.7 1.6-1.8 3.8-1.8 2.8 0 4.7 1.8 4.7 5.7V20z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Facebook',
-    href: 'https://www.facebook.com',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M14.5 20v-7.2h2.4l.4-2.8h-2.8V8.3c0-.8.2-1.4 1.4-1.4H17.5V4.4c-.2 0-1.1-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2h-2.5v2.8h2.5V20h3z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Instagram',
-    href: 'https://www.instagram.com',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M8 4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4zm8 1.7H8A2.3 2.3 0 0 0 5.7 8v8A2.3 2.3 0 0 0 8 18.3h8A2.3 2.3 0 0 0 18.3 16V8A2.3 2.3 0 0 0 16 5.7zM12 8.6A3.4 3.4 0 1 1 8.6 12 3.4 3.4 0 0 1 12 8.6zm0 1.6A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM16.7 7.2a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'X',
-    href: 'https://x.com',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M17.6 4h2.3l-5 5.7L21 20h-4.7l-3.7-4.8L8.2 20H5.8l5.4-6.1L3.4 4h4.8l3.3 4.4L17.6 4zm-.8 14.4h1.3L7.3 5.5H6L16.8 18.4z" />
-      </svg>
-    ),
-  },
-]
+function SocialLinks({ suffix = '' }) {
+  return (
+    <div className="header-social">
+      {socials.map((item) => (
+        <a
+          key={item.name + suffix}
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={item.name}
+        >
+          {item.icon}
+        </a>
+      ))}
+    </div>
+  )
+}
 
 function TopbarItems({ copy }) {
   return (
     <div className="header-top-group">
-      <p>Leadership training & 1-to-1 coaching</p>
+      <p>Leadership training & 1-2-1 coaching</p>
       <span className="ticker-dot" aria-hidden="true" />
-      <Link to="/contact" className="header-consult">
-        Free consultation
-      </Link>
-      <span className="ticker-dot" aria-hidden="true" />
-      <div className="header-social">
-        {socials.map((item) => (
-          <a
-            key={item.name + copy}
-            href={item.href}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={item.name}
-          >
-            {item.icon}
-          </a>
-        ))}
-      </div>
+      <span className="header-follow">Follow us:</span>
+      <SocialLinks suffix={copy} />
       <span className="ticker-dot" aria-hidden="true" />
     </div>
   )
@@ -71,29 +38,51 @@ function TopbarItems({ copy }) {
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const {count} = useCart()
+  const [profileOpen, setProfileOpen] = useState(false)
+  const profileRef = useRef(null)
+  const { count } = useCart()
+  const { user, logout } = useAuth()
+
+  function close() {
+    setOpen(false)
+    setProfileOpen(false)
+  }
+
+  async function signOut() {
+    await logout()
+    close()
+  }
+
+  useEffect(() => {
+    if (!profileOpen) return undefined
+
+    function onPointer(event) {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpen(false)
+      }
+    }
+
+    function onKey(event) {
+      if (event.key === 'Escape') setProfileOpen(false)
+    }
+
+    document.addEventListener('mousedown', onPointer)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onPointer)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [profileOpen])
 
   return (
     <header className="header">
       <div className="header-top">
         <div className="header-inner header-top-desktop">
-          <p>Leadership training & 1-to-1 coaching</p>
-          <div className="header-social">
-            {socials.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={item.name}
-              >
-                {item.icon}
-              </a>
-            ))}
+          <p>Leadership training & 1-2-1 coaching</p>
+          <div className="header-top-end">
+            <span className="header-follow">Follow us:</span>
+            <SocialLinks />
           </div>
-          <Link to="/contact" className="header-consult">
-            Free consultation
-          </Link>
         </div>
         <div className="header-top-ticker">
           <div className="header-top-track">
@@ -105,25 +94,22 @@ export default function Header() {
 
       <div className="header-main">
         <div className="header-inner">
-          <Link to="/" className="logo" onClick={() => setOpen(false)}>
-            <span className="logo-mark">AA</span>
+          <Link to="/" className="logo" onClick={close}>
+            <LogoMark />
             <span className="logo-text">
               Arwain
               <small>Academy</small>
             </span>
           </Link>
 
-          <nav
-            id="site-menu"
-            className={open ? 'nav nav-open' : 'nav'}
-          >
+          <nav id="site-menu" className={open ? 'nav nav-open' : 'nav'}>
             <div className="nav-drawer-top">
               <Link
                 to="/"
                 className="nav-drawer-brand"
                 onClick={() => setOpen(false)}
               >
-                <span className="logo-mark">AA</span>
+                <LogoMark light />
                 <span className="logo-text">
                   Arwain
                   <small>Academy</small>
@@ -158,27 +144,100 @@ export default function Header() {
               <span>05</span>
               FAQ
             </NavLink>
-            <NavLink to="/cart" onClick={() => setOpen(false)}>
+            <NavLink to="/cart" className="nav-cart" onClick={close}>
               <span>06</span>
-              Cart ({count})
+              Basket ({count})
             </NavLink>
+            {user ? (
+              <NavLink to="/dashboard" className="nav-auth" onClick={close}>
+                <span>07</span>
+                My Account
+              </NavLink>
+            ) : (
+              <NavLink to="/user/login" className="nav-auth" onClick={close}>
+                <span>07</span>
+                Login
+              </NavLink>
+            )}
             <div className="nav-drawer-actions">
-              <Link
-                to="/contact"
-                className="btn-ghost"
-                onClick={() => setOpen(false)}
-              >
+              {user ? (
+                <>
+                  <Link to="/dashboard" className="nav-user" onClick={close}>
+                    Hi, {user.name}
+                  </Link>
+                  <button type="button" className="header-login" onClick={signOut}>
+                    Logout
+                  </button>
+                </>
+              ) : null}
+              <Link to="/contact" className="btn" onClick={close}>
                 Enquire
-              </Link>
-              <Link
-                to="/courses"
-                className="btn-solid"
-                onClick={() => setOpen(false)}
-              >
-                Browse courses
               </Link>
             </div>
           </nav>
+
+          <div className="header-actions">
+            <Link to="/cart" className="header-cart">
+              Basket ({count})
+            </Link>
+            {user ? (
+              <>
+                <Link to="/dashboard" className="header-user">
+                  Hi, {user.name.split(' ')[0]}
+                </Link>
+                <div className="header-profile" ref={profileRef}>
+                  <button
+                    type="button"
+                    className={
+                      profileOpen
+                        ? 'header-login header-profile-btn is-open'
+                        : 'header-login header-profile-btn'
+                    }
+                    aria-expanded={profileOpen}
+                    aria-haspopup="menu"
+                    onClick={() => setProfileOpen((current) => !current)}
+                  >
+                    My Profile
+                    <svg
+                      className="header-profile-caret"
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4 6.2 8 10l4-3.8"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  {profileOpen ? (
+                    <div className="header-profile-menu" role="menu">
+                      <Link
+                        to="/dashboard"
+                        role="menuitem"
+                        onClick={() => setProfileOpen(false)}
+                      >
+                        My Account
+                      </Link>
+                      <button type="button" role="menuitem" onClick={signOut}>
+                        Logout
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
+              </>
+            ) : (
+              <Link to="/user/login" className="header-login">
+                Login
+              </Link>
+            )}
+            <Link to="/contact" className="btn">
+              Enquire
+            </Link>
+          </div>
 
           <button
             type="button"

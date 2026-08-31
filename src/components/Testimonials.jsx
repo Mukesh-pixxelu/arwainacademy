@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { testimonials as quotes } from '../data/testimonials.js'
+import { asset } from '../utils/asset.js'
 import './Testimonials.css'
 
 export default function Testimonials() {
@@ -56,14 +57,28 @@ export default function Testimonials() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="testimonials-bg" aria-hidden="true" />
+      <div
+        className="testimonials-bg"
+        style={{ '--testimonials-photo': `url("${asset('images/bg.jpg')}")` }}
+        aria-hidden="true"
+      />
       <div className="wrap testimonials-inner">
-        <div className="testimonials-head">
-          <p className="eyebrow">Testimonials</p>
-          <h2>What our clients are saying</h2>
+        <div className="testimonials-head" data-aos="fade-up">
+          <div>
+            <p className="eyebrow">Testimonials</p>
+            <h2>Real leaders. Real results.</h2>
+          </div>
+          <div className="testimonials-controls">
+            <button type="button" onClick={goPrev} aria-label="Previous testimonials">
+              ‹
+            </button>
+            <button type="button" onClick={goNext} aria-label="Next testimonials">
+              ›
+            </button>
+          </div>
         </div>
 
-        <div className="testimonials-viewport">
+        <div className="testimonials-viewport" data-aos="fade-up" data-aos-delay="120">
           <div
             className={animate ? 'testimonials-track' : 'testimonials-track is-instant'}
             style={{
@@ -100,29 +115,21 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="testimonials-controls">
-          <button type="button" onClick={goPrev} aria-label="Previous testimonials">
-            ‹
-          </button>
-          <div className="testimonials-dots" role="tablist" aria-label="Testimonial slides">
-            {quotes.map((item, i) => (
-              <button
-                key={item.name}
-                type="button"
-                role="tab"
-                aria-selected={activeDot === i}
-                aria-label={`Show testimonial ${i + 1}`}
-                className={activeDot === i ? 'is-active' : ''}
-                onClick={() => {
-                  setAnimate(true)
-                  setIndex(i)
-                }}
-              />
-            ))}
-          </div>
-          <button type="button" onClick={goNext} aria-label="Next testimonials">
-            ›
-          </button>
+        <div className="testimonials-dots" role="tablist" aria-label="Testimonial slides">
+          {quotes.map((item, i) => (
+            <button
+              key={item.name}
+              type="button"
+              role="tab"
+              aria-selected={activeDot === i}
+              aria-label={`Show testimonial ${i + 1}`}
+              className={activeDot === i ? 'is-active' : ''}
+              onClick={() => {
+                setAnimate(true)
+                setIndex(i)
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>

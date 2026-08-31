@@ -1,45 +1,238 @@
+.cart-sheet {
+  padding-bottom: 88px;
+}
+
+.cart-hero {
+  background: var(--ink);
+  color: #fff;
+  padding: 56px 0 48px;
+}
+
+.cart-hero h1 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: clamp(32px, 4vw, 46px);
+  letter-spacing: -0.03em;
+}
+
+.cart-hero p {
+  margin: 0;
+  color: #c5cae0;
+  font-size: 16px;
+}
+
+.cart-hero .eyebrow {
+  color: var(--gold);
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 32px 48px;
+  align-items: start;
+  padding-top: 48px;
+  padding-bottom: 0;
+}
+
 .cart-list {
   list-style: none;
+  margin: 0;
   padding: 0;
-  margin: 0 0 28px;
+  background: #fff;
 }
 
 .cart-item {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr) auto auto;
+  gap: 20px;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 12px;
+  padding: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-item:last-child {
+  border-bottom: 0;
 }
 
 .cart-item img {
-  width: 88px;
-  height: 64px;
+  width: 140px;
+  height: 92px;
   object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
 }
 
-.cart-item a {
+.cart-item-copy span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cart-item-copy a {
+  font-size: 18px;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.cart-item p {
-  margin: 6px 0 0;
+.cart-item-copy a:hover {
+  color: var(--gold);
+}
+
+.cart-item-copy em {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.cart-item > strong {
   color: var(--ink);
+  font-size: 20px;
+  letter-spacing: -0.03em;
 }
 
 .cart-item button {
-  border: 1px solid var(--line);
-  background: var(--white);
-  padding: 8px 14px;
-  border-radius: 8px;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--muted);
   font: inherit;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
 }
-.cart-total {
+
+.cart-item button:hover {
+  color: #b42318;
+}
+
+.cart-summary {
+  padding: 28px 24px;
+  background: var(--ink);
+  color: #fff;
+  border-left: 3px solid var(--gold);
+}
+
+.cart-summary .eyebrow {
+  color: var(--gold);
+}
+
+.cart-summary h2 {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: 26px;
+  letter-spacing: -0.03em;
+}
+
+.cart-summary ul {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+.cart-summary li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cart-summary li span {
+  color: #c5cae0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cart-summary li strong {
+  color: #fff;
+  font-size: 16px;
+}
+
+.cart-summary li:last-child strong {
+  color: var(--gold);
   font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.cart-summary .btn {
+  width: 100%;
+  margin-top: 0;
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  box-sizing: border-box;
+}
+
+.cart-summary .btn::after {
+  background: var(--ink);
+  color: #fff;
+}
+
+.cart-summary .btn:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+.cart-summary .btn:hover::after {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.cart-keep {
+  display: inline-block;
+  margin-top: 16px;
+  color: #fff;
+  font-size: 14px;
   font-weight: 700;
-  color: var(--ink) !important;
+}
+
+.cart-keep:hover {
+  color: var(--gold);
+}
+
+.cart-empty {
+  grid-column: 1 / -1;
+  padding: 48px 32px;
+  background: #fff;
+  text-align: center;
+}
+
+.cart-empty p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.cart-empty .btn {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    grid-template-columns: 96px 1fr auto;
+    gap: 14px;
+  }
+
+  .cart-item img {
+    width: 96px;
+    height: 72px;
+  }
+
+  .cart-item > strong {
+    grid-column: 2;
+  }
+
+  .cart-item button {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
 }

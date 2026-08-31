@@ -7,7 +7,7 @@ export default function FaqPage() {
     <main>
       <PageBanner
         title="Frequently asked questions"
-        text="Clear answers on courses, coaching and how to get started — so you can take the next step with confidence."
+        text="Clear answers on courses, coaching and how to get started, so you can take the next step with confidence."
         image="/images/coaching.jpg"
         crumbs={[
           { label: 'Home', to: '/' },
@@ -17,7 +17,7 @@ export default function FaqPage() {
 
       <Faq showIntro={false} />
 
-      <section className="cta-band">
+      <section className="cta-band" data-aos="fade-up">
         <div className="wrap">
           <h2>Still have a question?</h2>
           <p>Tell us your goals and we’ll recommend the right starting point.</p>

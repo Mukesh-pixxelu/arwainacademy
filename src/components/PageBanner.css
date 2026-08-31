@@ -40,11 +40,11 @@
 }
 
 .page-banner h1 {
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(36px, 4vw, 52px);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.15;
-  max-width: 18ch;
+  max-width: 22ch;
   margin: 0 0 10px;
   color: #fff;
 }
@@ -64,7 +64,7 @@
   padding: 6px 6px 6px 16px;
   background: rgba(8, 12, 40, 0.55);
   border: 1px solid rgba(226, 196, 74, 0.45);
-  border-radius: 999px;
+  border-radius: var(--radius);
   box-shadow: 0 10px 28px rgba(8, 12, 40, 0.28);
   backdrop-filter: blur(10px);
 }
@@ -101,7 +101,7 @@
   padding: 7px 14px;
   background: var(--highlight);
   color: var(--ink);
-  border-radius: 999px;
+  border-radius: var(--radius);
 }
 
 .breadcrumb-sep {
