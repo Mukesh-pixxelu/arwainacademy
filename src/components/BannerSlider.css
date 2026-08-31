@@ -1,19 +1,26 @@
 .banner {
   position: relative;
   isolation: isolate;
-  min-height: clamp(560px, 80vh, 840px);
+  height: calc(100dvh - var(--header-h, 118px));
+  min-height: 520px;
   overflow: hidden;
   background: var(--ink);
   color: #fff;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .banner-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transform: scale(1.08);
+  transform: scale(1.12);
   transition: opacity 0.85s ease, transform 6.5s ease;
   z-index: 0;
+}
+
+.banner.is-intro .banner-slide.is-active {
+  animation: bannerReveal 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .banner-slide.is-active {
@@ -39,36 +46,37 @@
 .banner-inner {
   position: relative;
   z-index: 2;
-  min-height: clamp(560px, 80vh, 840px);
+  height: 100%;
+  min-height: 100%;
   display: flex;
   align-items: center;
-  padding-top: 64px;
-  padding-bottom: 80px;
+  padding-top: 48px;
+  padding-bottom: 96px;
 }
 
 .banner-copy {
   max-width: 640px;
-  animation: bannerIn 0.7s ease;
+  animation: bannerIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .banner-copy h1 {
-  font-size: clamp(32px, 4.2vw, 56px);
+  font-size: clamp(36px, 4.6vw, 62px);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   line-height: 1.08;
   max-width: 16ch;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
 }
 
-.banner-copy .lead {
-  font-size: 22px;
-  color: #fff;
-  margin: 0 0 16px;
+.banner-copy h1 em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--highlight);
 }
 
 .banner-copy p {
-  max-width: 52ch;
-  color: #c5cae0;
+  max-width: 46ch;
+  color: #d7dced;
   font-size: 17px;
   line-height: 1.7;
 }
@@ -77,15 +85,8 @@
   color: var(--highlight);
 }
 
-.banner .btn-highlight {
-  background: var(--highlight);
-  color: var(--ink);
+.banner .btn {
   margin-top: 28px;
-}
-
-.banner .btn-highlight:hover {
-  background: #edd36a;
-  color: var(--ink);
 }
 
 .banner-controls {
@@ -99,25 +100,61 @@
 }
 
 .banner-arrow {
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(14, 20, 66, 0.45);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid rgba(226, 196, 74, 0.85);
+  background: rgba(14, 20, 66, 0.78);
   color: #fff;
-  border-radius: 999px;
-  font-size: 28px;
-  line-height: 1;
+  border-radius: 50%;
   cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.banner-arrow:hover {
-  background: var(--highlight);
+.banner-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.banner-arrow:hover,
+.banner-arrow:focus-visible {
+  background: var(--gold);
+  border-color: var(--gold);
   color: var(--ink);
-  border-color: var(--highlight);
+  transform: scale(1.06);
+}
+
+.banner-pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 6px;
+}
+
+.banner-count {
+  margin: 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.banner-count span {
+  margin: 0 6px;
+  color: var(--gold);
 }
 
 .banner-dots {
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
@@ -129,11 +166,46 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.38);
   cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
 }
 
 .banner-dots button.is-active {
-  width: 28px;
-  background: var(--highlight);
+  width: 32px;
+  background: var(--gold);
+}
+
+.banner-dots button:hover,
+.banner-dots button:focus-visible {
+  background: #fff;
+}
+
+.banner-next {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: bannerCue 0.6s ease 1.05s forwards;
+}
+
+.banner-next span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  transform: rotate(45deg);
+  animation: bannerCueBounce 1.4s ease infinite;
 }
 
 .banner-progress {
@@ -158,14 +230,41 @@
   animation-play-state: paused;
 }
 
+@keyframes bannerReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes bannerIn {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(28px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes bannerCue {
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes bannerCueBounce {
+  0%,
+  100% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(5px);
   }
 }
 
@@ -177,7 +276,7 @@
 
 @media (max-width: 800px) {
   .banner-inner {
-    padding-bottom: 88px;
+    padding-bottom: 108px;
   }
 
   .banner-controls {
@@ -185,17 +284,36 @@
     left: var(--page-pad);
     bottom: 22px;
   }
+
+  .banner-arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  .banner-next {
+    left: auto;
+    right: var(--page-pad);
+    bottom: 28px;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .banner-slide,
   .banner-copy,
-  .banner-progress span {
+  .banner-next,
+  .banner-next span,
+  .banner-progress span,
+  .banner.is-intro .banner-slide.is-active {
     animation: none;
     transition: opacity 0.3s ease;
   }
 
   .banner-slide.is-active {
     transform: none;
+  }
+
+  .banner-next {
+    opacity: 0.9;
   }
 }

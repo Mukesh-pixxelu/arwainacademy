@@ -23,7 +23,7 @@ export default function Terms() {
         ]}
       />
 
-      <div className="wrap legal-wrap">
+      <div className="wrap legal-wrap" data-aos="fade-up">
         <article className="legal-panel">
           <aside>
             <p>On this page</p>
@@ -47,9 +47,9 @@ export default function Terms() {
               <h2>Courses and coaching</h2>
               <p>
                 Course descriptions, duration and prices are shown on each
-                course page. Qualifications include Level 3 and Level 5 awards,
-                certificates and diplomas. Coaching is delivered 1-to-1. A free
-                consultation does not create an obligation to purchase.
+                course page. Qualifications include Level 3, Level 5 and Level 7
+                awards, certificates and diplomas. Coaching is delivered 1-2-1. A
+                free consultation does not create an obligation to purchase.
               </p>
             </section>
 

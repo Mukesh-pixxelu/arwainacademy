@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
         ]}
       />
 
-      <div className="wrap legal-wrap">
+      <div className="wrap legal-wrap" data-aos="fade-up">
         <article className="legal-panel">
           <aside>
             <p>On this page</p>
@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
             <p className="legal-lead">
               This policy explains what personal information we collect when you
               use the Arwain Academy website, enquire about a course, or book a
-              consultation — and how we use it.
+              consultation, and how we use it.
             </p>
 
             <section id="collect">
@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
               <h2>How we use it</h2>
               <p>
                 We use your details to reply to enquiries, recommend a suitable
-                Level 3 or Level 5 pathway or coaching session, and to
+                Level 3, Level 5 or Level 7 pathway or coaching session, and to
                 administer bookings. We do not sell your information.
               </p>
             </section>
@@ -84,7 +84,7 @@ export default function PrivacyPolicy() {
               <h2>Contact</h2>
               <p>
                 For privacy questions, email hello@arwainacademy.co.uk. We aim
-                to reply within 1–2 working days.
+                to reply within 1 to 2 working days.
               </p>
             </section>
           </div>

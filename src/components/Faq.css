@@ -1,12 +1,11 @@
 .faq {
-  background: var(--white);
-  padding: 80px 0;
-  border-top: 1px solid var(--line);
+  background: var(--cream);
+  padding: 96px 0;
 }
 
 .faq-on-page {
   background: var(--cream);
-  border-top: none;
+  padding: 96px 0;
 }
 
 .faq-layout {
@@ -19,20 +18,11 @@
 .faq-layout.is-page {
   grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.2fr);
   gap: 40px;
-  align-items: start;
 }
 
 .faq-aside {
   position: sticky;
   top: 120px;
-}
-
-.faq-on-page .faq-item {
-  background: var(--white);
-}
-
-.faq-on-page .faq-points li {
-  background: var(--white);
 }
 
 .faq-aside img {
@@ -43,7 +33,6 @@
   object-position: center 20%;
   border-radius: var(--radius);
   margin-bottom: 20px;
-  box-shadow: var(--shadow);
 }
 
 .faq-help {
@@ -73,13 +62,6 @@
 
 .faq-help .btn {
   margin-top: 18px;
-  background: var(--highlight);
-  color: var(--ink);
-}
-
-.faq-help .btn:hover {
-  background: #edd36a;
-  color: var(--ink);
 }
 
 .faq-points {
@@ -91,7 +73,7 @@
 }
 
 .faq-points li {
-  background: var(--cream);
+  background: var(--white);
   border-radius: var(--radius);
   padding: 16px 18px;
   color: var(--muted);
@@ -112,12 +94,11 @@
 }
 
 .faq-intro h2 {
-  font-size: 36px;
-  font-weight: 700;
+  font-size: clamp(32px, 3.4vw, 44px);
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin: 0 0 14px;
-  max-width: 12ch;
+  max-width: 10ch;
 }
 
 .faq-intro p {
@@ -135,26 +116,16 @@
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .faq-item {
-  background: var(--cream);
-  border-radius: var(--radius);
-  border: 1px solid transparent;
-  overflow: hidden;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.faq-item.is-open {
-  background: #fff;
-  border-color: #eceef8;
-  box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--line);
 }
 
 .faq-item h3 {
   margin: 0;
   font-size: inherit;
+  font-family: var(--sans);
 }
 
 .faq-item button {
@@ -163,11 +134,12 @@
   grid-template-columns: 40px 1fr 36px;
   align-items: center;
   gap: 12px;
-  padding: 20px 22px;
+  padding: 20px 0;
   background: none;
   border: 0;
   color: var(--ink);
   font: inherit;
+  font-family: var(--sans);
   font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -175,39 +147,23 @@
   cursor: pointer;
 }
 
-.faq-item button:hover .faq-q {
-  color: var(--gold);
-}
-
 .faq-item button:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: -2px;
+  outline: 2px solid var(--highlight);
+  outline-offset: 4px;
 }
 
 .faq-num {
-  color: var(--gold);
+  color: var(--highlight);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
 }
 
-.faq-q {
-  transition: color 0.2s ease;
-}
-
 .faq-icon {
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   justify-self: end;
-  border-radius: 999px;
-  background: #fff;
-  border: 1px solid var(--line);
-}
-
-.faq-item.is-open .faq-icon {
-  background: var(--ink);
-  border-color: var(--ink);
 }
 
 .faq-icon::before,
@@ -221,19 +177,14 @@
 }
 
 .faq-icon::before {
-  width: 12px;
+  width: 14px;
   height: 2px;
 }
 
 .faq-icon::after {
   width: 2px;
-  height: 12px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.faq-item.is-open .faq-icon::before,
-.faq-item.is-open .faq-icon::after {
-  background: var(--highlight);
+  height: 14px;
+  transition: transform 0.2s ease;
 }
 
 .faq-item.is-open .faq-icon::after {
@@ -241,7 +192,7 @@
 }
 
 .faq-item [role='region'] {
-  padding: 0 22px 22px 74px;
+  padding: 0 0 22px 52px;
 }
 
 .faq-item [role='region'] p {
@@ -252,20 +203,19 @@
 }
 
 @media (max-width: 1024px) {
-  .faq {
+  .faq,
+  .faq-on-page {
     padding: 56px 0;
   }
 
-  .faq-layout {
+  .faq-layout,
+  .faq-layout.is-page {
     grid-template-columns: 1fr;
     gap: 28px;
   }
 
-  .faq-layout.is-page {
-    grid-template-columns: 1fr;
-  }
-
-  .faq-aside {
+  .faq-aside,
+  .faq-intro {
     position: static;
   }
 
@@ -273,21 +223,13 @@
     height: 200px;
   }
 
-  .faq-intro {
-    position: static;
-  }
-
-  .faq-intro h2 {
-    font-size: 28px;
-  }
-
   .faq-item button {
-    grid-template-columns: 32px 1fr 36px;
-    padding: 16px 16px;
+    grid-template-columns: 32px 1fr 28px;
+    padding: 16px 0;
     font-size: 16px;
   }
 
   .faq-item [role='region'] {
-    padding: 0 16px 18px 16px;
+    padding: 0 0 18px 0;
   }
 }

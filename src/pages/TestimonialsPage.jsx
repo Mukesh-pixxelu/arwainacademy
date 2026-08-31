@@ -17,20 +17,20 @@ export default function TestimonialsPage() {
       />
 
       <section className="page reviews">
-        <div className="reviews-head">
+        <div className="reviews-head" data-aos="fade-up">
           <div>
             <p className="eyebrow">Client stories</p>
             <h2>Real people. Real progress.</h2>
           </div>
           <p>
-            From first-line managers to business owners — here is what changed
+            From first-line managers to business owners. Here is what changed
             after a course or a coaching session with Arwain Academy.
           </p>
         </div>
 
         <div className="reviews-grid">
           {testimonials.map((item) => (
-            <article key={item.name} className="reviews-card">
+            <article key={item.name} className="reviews-card" data-aos="fade-up">
               <span className="tag">{item.role}</span>
               <p>{item.text}</p>
               <strong>{item.name}</strong>
@@ -39,7 +39,7 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      <section className="cta-band">
+      <section className="cta-band" data-aos="fade-up">
         <div className="wrap">
           <h2>Ready to write your own story?</h2>
           <p>We’ll be with you every step of the way.</p>

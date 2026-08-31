@@ -34,7 +34,7 @@
   min-height: 220px;
   padding: 28px;
   background: var(--white);
-  border-radius: 18px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
   border-left: 4px solid var(--highlight);
 }

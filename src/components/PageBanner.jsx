@@ -10,7 +10,7 @@ export default function PageBanner({ title, text, image, crumbs }) {
         style={{ backgroundImage: `url("${asset(image)}")` }}
         aria-hidden="true"
       />
-      <div className="wrap page-banner-inner">
+      <div className="wrap page-banner-inner" data-aos="fade-in">
         <h1>{title}</h1>
         {text ? <p>{text}</p> : null}
         <nav className="breadcrumb" aria-label="Breadcrumb">
