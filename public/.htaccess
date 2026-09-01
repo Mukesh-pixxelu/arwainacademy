@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /dev/arwainacademy/
+  RewriteBase /
 
   RewriteRule ^backend/ - [L]
 
@@ -10,5 +10,5 @@
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /dev/arwainacademy/index.html [L]
+  RewriteRule . /index.html [L]
 </IfModule>
