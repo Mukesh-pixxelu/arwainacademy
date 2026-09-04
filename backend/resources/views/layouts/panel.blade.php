@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=30">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=32">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <script>
         (function () {
@@ -52,6 +52,10 @@
                     <a href="{{ route('admin.payments.index') }}" class="{{ request()->routeIs('admin.payments.*') ? 'active' : '' }}">
                         <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M8 14h3"/></svg>
                         Payments
+                    </a>
+                    <a href="{{ route('admin.submissions.index') }}" class="{{ request()->routeIs('admin.submissions.*') ? 'active' : '' }}">
+                        <svg viewBox="0 0 24 24"><path d="M8 7h8M8 12h5M6 4h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2z"/></svg>
+                        Sign-off
                     </a>
                     <a href="{{ route('admin.settings.payments') }}" class="{{ request()->routeIs('admin.settings.payments*') ? 'active' : '' }}">
                         <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="16" cy="14" r="1.6"/></svg>

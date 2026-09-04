@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { formatPrice } from '../data/courses.js'
+import { CONTACT_EMAIL } from '../data/contact.js'
 import { useCourses } from '../courses/CourseContext.jsx'
 import { socials } from '../data/socials.jsx'
 import LogoMark from './LogoMark.jsx'
@@ -133,8 +134,8 @@ export default function Footer() {
               <span className="footer-icon">
                 <MailIcon />
               </span>
-              <a href="mailto:hello@arwainacademy.co.uk">
-                hello@arwainacademy.co.uk
+              <a href={'mailto:' + CONTACT_EMAIL}>
+                {CONTACT_EMAIL}
               </a>
             </li>
             <li>

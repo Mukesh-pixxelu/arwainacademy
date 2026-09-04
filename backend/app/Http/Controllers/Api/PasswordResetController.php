@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\AllowedFrontendHost;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -76,9 +77,7 @@ class PasswordResetController extends Controller
         $scheme = $parts['scheme'] ?? '';
         $host = $parts['host'] ?? '';
         $path = rtrim($parts['path'] ?? '', '/');
-        $allowedHost = in_array($host, ['localhost', '127.0.0.1'], true)
-            || $host === 'pixxelu.com'
-            || str_ends_with($host, '.pixxelu.com');
+        $allowedHost = AllowedFrontendHost::matches($host);
 
         if (! in_array($scheme, ['http', 'https'], true) || ! $allowedHost || ! str_ends_with($path, '/user/reset-password')) {
             throw ValidationException::withMessages([

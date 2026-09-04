@@ -34,6 +34,7 @@ class PaymentGateway
         $success = $returnUrl.'?payment='.$payment->id.'&session_id={CHECKOUT_SESSION_ID}';
         $cancel = $returnUrl.'?payment='.$payment->id.'&canceled=1';
         $label = self::itemLabel($payment);
+        $productName = mb_substr($label, 0, 120);
 
         $response = Http::withToken($secret)
             ->asForm()
@@ -47,13 +48,16 @@ class PaymentGateway
                 'metadata' => [
                     'payment_id' => (string) $payment->id,
                 ],
+                'payment_intent_data' => [
+                    'description' => $label,
+                ],
                 'line_items' => [[
                     'quantity' => 1,
                     'price_data' => [
                         'currency' => 'gbp',
                         'unit_amount' => self::pence($payment->amount),
                         'product_data' => [
-                            'name' => $label,
+                            'name' => $productName,
                         ],
                     ],
                 ]],
@@ -225,9 +229,18 @@ class PaymentGateway
 
     public static function itemLabel(Payment $payment): string
     {
-        $label = 'Arwain Academy — '.$payment->courseList();
+        $payment->loadMissing(['items', 'user']);
+        $parts = [
+            'Arwain Academy',
+            $payment->courseList(),
+            $payment->planLabel(),
+        ];
+        $name = trim((string) ($payment->user?->name ?? ''));
+        if ($name !== '') {
+            $parts[] = 'for '.$name;
+        }
 
-        return mb_substr($label, 0, 120);
+        return mb_substr(implode(' — ', $parts), 0, 500);
     }
 
     public static function pence(mixed $amount): int

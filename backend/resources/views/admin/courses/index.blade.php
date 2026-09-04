@@ -46,6 +46,9 @@
                 <div class="catalogue-media">
                     <img src="{{ $course->image_url }}" alt="">
                     <span class="catalogue-badge">{{ $course->category ?: 'Course' }}</span>
+                    @unless($course->listed)
+                        <span class="catalogue-badge" style="left: auto; right: 12px; background: #2b3145;">Hidden</span>
+                    @endunless
                 </div>
                 <div class="catalogue-body">
                     <h3>{{ $course->title }}</h3>

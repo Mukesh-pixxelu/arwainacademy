@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\PaymentItem;
 use App\Services\AdminNotifier;
 use App\Services\PaymentGateway;
+use App\Support\AllowedFrontendHost;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -252,9 +253,7 @@ class PurchaseController extends Controller
         $scheme = $parts['scheme'] ?? '';
         $host = $parts['host'] ?? '';
         $path = $parts['path'] ?? '/';
-        $allowedHost = in_array($host, ['localhost', '127.0.0.1'], true)
-            || $host === 'pixxelu.com'
-            || str_ends_with($host, '.pixxelu.com');
+        $allowedHost = AllowedFrontendHost::matches($host);
 
         if (! in_array($scheme, ['http', 'https'], true) || ! $allowedHost || ! str_ends_with($path, '/checkout')) {
             throw ValidationException::withMessages([

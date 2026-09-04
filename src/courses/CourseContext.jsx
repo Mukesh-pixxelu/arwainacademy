@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import {
   courses as localCourses,
+  listedCourseSlugs,
   findCourse as findInList,
   getCourse as getFromList,
   hydrateFromApi,
@@ -21,7 +22,8 @@ export function CourseProvider({ children }) {
         if (cancelled) return
         const rows = Array.isArray(data.courses) ? data.courses : []
         if (rows.length) {
-          setCatalog(rows.map(hydrateFromApi))
+          const allowed = new Set(listedCourseSlugs)
+          setCatalog(rows.map(hydrateFromApi).filter((course) => allowed.has(course.slug)))
         }
       })
       .catch(() => {
