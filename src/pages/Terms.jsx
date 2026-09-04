@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import PageBanner from '../components/PageBanner.jsx'
-import { CONTACT_EMAIL } from '../data/contact.js'
 import './Legal.css'
 
 const sections = [
@@ -86,7 +85,7 @@ export default function Terms() {
               <h2>Contact</h2>
               <p>
                 Questions about these terms can be sent via the contact page or
-                to {CONTACT_EMAIL}.
+                to hello@arwainacademy.co.uk.
               </p>
             </section>
           </div>

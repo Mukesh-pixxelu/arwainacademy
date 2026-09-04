@@ -208,13 +208,6 @@
   letter-spacing: 0.12em;
 }
 
-.contact-error {
-  margin: 0 0 12px;
-  color: #b42318;
-  font-size: 14px;
-  font-weight: 600;
-}
-
 @media (max-width: 900px) {
   .contact-studio-inner {
     grid-template-columns: 1fr;

@@ -115,6 +115,4 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
-    'contact_to' => env('CONTACT_TO', 'info@arwainacademy.com'),
-
 ];

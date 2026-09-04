@@ -997,8 +997,6 @@ export const courses = [
   },
 ]
 
-export const listedCourseSlugs = courses.map((course) => course.slug)
-
 function normalize(value) {
   return String(value || '')
     .toLowerCase()

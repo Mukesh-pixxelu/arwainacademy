@@ -57,68 +57,50 @@ class CourseController extends Controller
 
     public function create(): View
     {
-        return view('admin.courses.create', ['course' => new Course]);
+        return view('admin.courses.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validated($request);
-        unset($data['image'], $data['guide_pdf'], $data['questions']);
         $data['slug'] = Course::makeSlug($data['title']);
         $data['image'] = $this->storeImage($request);
-        $data['listed'] = $request->boolean('listed');
-        $data['questions'] = $this->questionList($request);
-        $data['guide_pdf'] = $this->storePdf($request);
 
-        $course = Course::create($data);
-        $course->ensureDefaultUnits();
+        Course::create($data);
 
         return redirect()
-            ->route('admin.courses.edit', $course)
-            ->with('success', 'Course added. Upload a PDF and add 5 questions if needed.');
+            ->route('admin.courses.index')
+            ->with('success', 'Course added successfully.');
     }
 
     public function edit(Course $course): View
     {
-        $course->ensureDefaultUnits();
-        $course->load('units');
-
         return view('admin.courses.edit', compact('course'));
     }
 
     public function update(Request $request, Course $course): RedirectResponse
     {
         $data = $this->validated($request, false);
-        unset($data['image'], $data['guide_pdf'], $data['questions']);
-        $data['listed'] = $request->boolean('listed');
-        $data['questions'] = $this->questionList($request);
 
         if ($course->title !== $data['title']) {
             $data['slug'] = Course::makeSlug($data['title'], $course->id);
         }
 
         if ($request->hasFile('image')) {
-            $this->deleteFile($course->image);
+            $this->deleteImage($course->image);
             $data['image'] = $this->storeImage($request);
         }
 
-        if ($request->hasFile('guide_pdf')) {
-            $this->deleteFile($course->guide_pdf);
-            $data['guide_pdf'] = $this->storePdf($request);
-        }
-
         $course->update($data);
-        $course->ensureDefaultUnits();
 
         return redirect()
-            ->route('admin.courses.edit', $course)
-            ->with('success', 'Course updated.');
+            ->route('admin.courses.index')
+            ->with('success', 'Course updated successfully.');
     }
 
     public function destroy(Course $course): RedirectResponse
     {
-        $this->deleteFile($course->image);
-        $this->deleteFile($course->guide_pdf);
+        $this->deleteImage($course->image);
         $course->delete();
 
         return redirect()
@@ -136,10 +118,7 @@ class CourseController extends Controller
             'description' => ['required', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
             'category' => ['nullable', 'string', 'max:80'],
-            'image' => ['nullable', 'image', 'max:2048'],
-            'guide_pdf' => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
-            'questions' => ['nullable', 'array', 'max:5'],
-            'questions.*' => ['nullable', 'string', 'max:500'],
+            'image' => [$imageRequired ? 'nullable' : 'nullable', 'image', 'max:2048'],
         ]);
     }
 
@@ -159,45 +138,7 @@ class CourseController extends Controller
         return 'uploads/courses/'.$name;
     }
 
-    private function storePdf(Request $request): ?string
-    {
-        if (! $request->hasFile('guide_pdf')) {
-            return null;
-        }
-
-        $directory = public_path('uploads/courses');
-        File::ensureDirectoryExists($directory);
-
-        $file = $request->file('guide_pdf');
-        $name = uniqid('course_pdf_', true).'.pdf';
-        $file->move($directory, $name);
-
-        return 'uploads/courses/'.$name;
-    }
-
-    /**
-     * @return list<array{id: string, label: string, type: string, required: bool}>
-     */
-    private function questionList(Request $request): array
-    {
-        $items = [];
-        foreach ($request->input('questions', []) as $index => $label) {
-            $text = trim((string) $label);
-            if ($text === '') {
-                continue;
-            }
-            $items[] = [
-                'id' => 'q'.((int) $index + 1),
-                'label' => $text,
-                'type' => 'textarea',
-                'required' => true,
-            ];
-        }
-
-        return $items;
-    }
-
-    private function deleteFile(?string $path): void
+    private function deleteImage(?string $path): void
     {
         if (! $path || str_starts_with($path, 'http')) {
             return;

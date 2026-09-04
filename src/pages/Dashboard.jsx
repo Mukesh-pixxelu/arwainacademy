@@ -7,7 +7,6 @@ import { apiRequest } from '../utils/api.js'
 import { asset } from '../utils/asset.js'
 import PasswordField from '../components/PasswordField.jsx'
 import LogoMark from '../components/LogoMark.jsx'
-import CourseLearn from './CourseLearn.jsx'
 import './Dashboard.css'
 
 function formatDate(value) {
@@ -72,7 +71,6 @@ export default function Dashboard() {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
-  const [workspace, setWorkspace] = useState(null)
 
   useEffect(() => {
     setName(user?.name || '')
@@ -87,26 +85,6 @@ export default function Dashboard() {
       .catch(() => setPayments([]))
       .finally(() => setLoading(false))
   }, [token])
-
-  useEffect(() => {
-    if (view !== 'course' || active?.status !== 'successful' || !active?.slug || !token) {
-      return undefined
-    }
-
-    let cancelled = false
-    setWorkspace(null)
-    apiRequest('/api/learning/' + active.slug, { token })
-      .then((data) => {
-        if (!cancelled) setWorkspace(data)
-      })
-      .catch(() => {
-        if (!cancelled) setWorkspace(null)
-      })
-
-    return () => {
-      cancelled = true
-    }
-  }, [view, active, token])
 
   const courses = useMemo(
     () =>
@@ -167,8 +145,7 @@ export default function Dashboard() {
   }
 
   function openCourse(item) {
-    const info = findCourse(item)
-    setActive({ ...item, slug: item.slug || info?.slug })
+    setActive(item)
     setView('course')
   }
 
@@ -423,13 +400,37 @@ export default function Dashboard() {
             </div>
 
             {unlocked ? (
-              <CourseLearn
-                catalog={course}
-                workspace={workspace}
-                slug={active.slug}
-                token={token}
-                onUpdate={setWorkspace}
-              />
+              <div className="sd-learn-body">
+                <section>
+                  <h2>
+                    <span>01</span>
+                    Overview
+                  </h2>
+                  <p>{course?.overview || active.title}</p>
+                </section>
+                <section>
+                  <h2>
+                    <span>02</span>
+                    CMI learning platform
+                  </h2>
+                  <p>
+                    After enrolment, the academy will register you with CMI and
+                    send your login details. You will then access your course
+                    materials on the CMI platform.
+                  </p>
+                </section>
+                <section>
+                  <h2>
+                    <span>03</span>
+                    What happens next
+                  </h2>
+                  <p>
+                    Keep this enrolment on your dashboard. We will be in touch
+                    with your CMI access details. Extra study resources can be
+                    added here later.
+                  </p>
+                </section>
+              </div>
             ) : (
               <div className="sd-lock">
                 <p>Finish payment to unlock this course content.</p>

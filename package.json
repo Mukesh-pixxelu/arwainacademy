@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview --base /",
-    "hostinger-deploy": "bash scripts/hostinger-deploy.sh"
+    "preview": "vite preview --base /dev/arwainacademy/"
   },
   "dependencies": {
     "aos": "^2.3.4",

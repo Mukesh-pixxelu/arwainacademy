@@ -44,7 +44,7 @@ class Setting extends Model
         try {
             return Crypt::decryptString($value);
         } catch (\Throwable) {
-            return null;
+            return $value;
         }
     }
 
