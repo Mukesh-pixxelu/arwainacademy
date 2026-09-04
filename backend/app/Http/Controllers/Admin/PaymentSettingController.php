@@ -15,7 +15,7 @@ class PaymentSettingController extends Controller
         return view('admin.settings.payments', [
             'paypalEmail' => Setting::get('paypal_email', ''),
             'stripeKey' => Setting::get('stripe_key', ''),
-            'hasStripeSecret' => Setting::has('stripe_secret'),
+            'hasStripeSecret' => (bool) Setting::secret('stripe_secret'),
         ]);
     }
 

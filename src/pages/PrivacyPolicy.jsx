@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageBanner from '../components/PageBanner.jsx'
+import { CONTACT_EMAIL } from '../data/contact.js'
 import './Legal.css'
 
 const sections = [
@@ -76,14 +77,14 @@ export default function PrivacyPolicy() {
               <h2>Your rights</h2>
               <p>
                 You can ask us for a copy of the information we hold, or to
-                update or delete it, by emailing hello@arwainacademy.co.uk.
+                update or delete it, by emailing {CONTACT_EMAIL}.
               </p>
             </section>
 
             <section id="contact">
               <h2>Contact</h2>
               <p>
-                For privacy questions, email hello@arwainacademy.co.uk. We aim
+                For privacy questions, email {CONTACT_EMAIL}. We aim
                 to reply within 1 to 2 working days.
               </p>
             </section>

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCourses } from '../courses/CourseContext.jsx'
+import { CONTACT_EMAIL } from '../data/contact.js'
+import { apiRequest } from '../utils/api.js'
 import PageBanner from '../components/PageBanner.jsx'
 import './Contact.css'
 
@@ -14,15 +16,28 @@ export default function Contact() {
     message: '',
   })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   function update(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault()
-    console.log('Enquiry:', form)
-    setSent(true)
+    setSending(true)
+    setError('')
+    try {
+      await apiRequest('/api/contact', {
+        method: 'POST',
+        body: form,
+      })
+      setSent(true)
+    } catch (err) {
+      setError(err.message || 'Something went wrong.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -112,8 +127,9 @@ export default function Contact() {
                   </label>
                 </div>
 
-                <button type="submit" className="btn">
-                  Send enquiry
+                {error ? <p className="contact-error">{error}</p> : null}
+                <button type="submit" className="btn" disabled={sending}>
+                  {sending ? 'Sending…' : 'Send enquiry'}
                 </button>
               </>
             )}
@@ -131,7 +147,7 @@ export default function Contact() {
             <ul className="contact-reach-list">
               <li>
                 <span>Email</span>
-                <a href="mailto:hello@arwainacademy.co.uk">hello@arwainacademy.co.uk</a>
+                <a href={'mailto:' + CONTACT_EMAIL}>{CONTACT_EMAIL}</a>
               </li>
               <li>
                 <span>Call</span>

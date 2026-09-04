@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CourseUnitController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\SubmissionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -52,6 +54,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('notifications', [NotificationController::class, 'destroyAll'])->name('notifications.destroy-all');
         Route::delete('notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
         Route::resource('courses', CourseController::class)->except(['show']);
+        Route::post('courses/{course}/units', [CourseUnitController::class, 'store'])->name('courses.units.store');
+        Route::delete('courses/{course}/units/{unit}', [CourseUnitController::class, 'destroy'])->name('courses.units.destroy');
+        Route::get('submissions', [SubmissionController::class, 'index'])->name('submissions.index');
+        Route::get('submissions/{submission}', [SubmissionController::class, 'show'])->name('submissions.show');
+        Route::post('submissions/{submission}/review', [SubmissionController::class, 'review'])->name('submissions.review');
         Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
         Route::post('payments/{payment}/complete', [PaymentController::class, 'complete'])->name('payments.complete');
         Route::delete('payments/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
